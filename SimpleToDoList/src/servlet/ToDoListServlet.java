@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.UtilDB;
 
 /**
  * Servlet implementation class ToDoListServlet
@@ -31,8 +32,19 @@ public class ToDoListServlet extends HttpServlet {
 		String taskName = request.getParameter("TaskName");
 		String dueDate = request.getParameter("DueDate");
 		
+		UtilDB.createTasks(taskName, dueDate);
+		
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("Task Name: " + taskName + " Due Date: " + dueDate);
+		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
+	            "transitional//en\">"; //
+	    out.println(docType + //
+	           "<html>" + //
+	           "<style> .div1 { display: flex; height: 250px; justify-content: center; align-items: bottom; }" + //
+	           ".div2 { display: flex; height: 250px; justify-content: center; align-items: bottom; } </style>");
+	    out.println("<div class=\"div1\"> Task, " + taskName + ", was created.</div>");
+	    out.println("<div class=\"div2\"><a href=\"ToDoList.html\">View the To-do List</a></div>");
+	    out.println("</html>");
 	}
 
 	/**
