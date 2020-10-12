@@ -28,22 +28,29 @@ public class Task {
 
    @Column(name = "duedate")
    private String dueDate;
+   
+   public Task() {
+   }
 
    public Task(String name, String dueDate) {
 	   this.name = name;
 	   this.dueDate = dueDate;
    }
    
+   public Integer getID() {
+	   return id;
+   }
+   
    public String getName() {
       return name;
    }
 
-   public void getDueDate(String name) {
-      this.name = name;
+   public String getDueDate() {
+	  return dueDate;
    }
 
    @Override
    public String toString() {
-      return "Task: " + this.name + ", Due Date: " + this.dueDate;
+      return "Task " + this.name + ", Due Date: " + this.dueDate;
    }
 }

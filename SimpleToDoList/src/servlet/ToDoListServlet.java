@@ -2,12 +2,15 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import datamodel.Task;
 import util.UtilDB;
 
 /**
@@ -42,9 +45,14 @@ public class ToDoListServlet extends HttpServlet {
 	           "<html>" + //
 	           "<style> .div1 { display: flex; height: 250px; justify-content: center; align-items: bottom; }" + //
 	           ".div2 { display: flex; height: 250px; justify-content: center; align-items: bottom; } </style>");
-	    out.println("<div class=\"div1\"> Task, " + taskName + ", was created.</div>");
-	    out.println("<div class=\"div2\"><a href=\"ToDoList.html\">View the To-do List</a></div>");
+	    out.println("<div class=\"div1\"> Task " + taskName + " was created.</div>");
+	    out.println("<div class=\"div2\"><a href=\"ToDoList.jsp\">View the To-do List</a></div>");
 	    out.println("</html>");
+	    
+	    List<Task> tasks = UtilDB.listTasks();
+	    for (Task task : tasks) {
+	    	System.out.println(task.getName());
+	    }
 	}
 
 	/**

@@ -39,7 +39,7 @@ public class UtilDB {
 
       try {
          tx = session.beginTransaction();
-         List<?> tasks = session.createQuery("from task").list();
+         List<?> tasks = session.createQuery("FROM Task").list();
          for (Iterator<?> iterator = tasks.iterator(); iterator.hasNext();) {
             Task task = (Task) iterator.next();
             resultList.add(task);
@@ -63,7 +63,7 @@ public class UtilDB {
 
       try {
          tx = session.beginTransaction();
-         List<?> Tasks = session.createQuery("from task").list();
+         List<?> Tasks = session.createQuery("FROM Task").list();
          for (Iterator<?> iterator = Tasks.iterator(); iterator.hasNext();) {
             Task task = (Task) iterator.next();
             if (task.getName().startsWith(keyword)) {
